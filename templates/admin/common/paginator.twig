@@ -1,0 +1,9 @@
+<nav>
+    <ul class="pagination">
+
+        {% for i in 1..totalPages %}
+            <li class="{% if pageNumber == i %}active{% endif %}"><a href="{{ pageBaseUrl }}/{{ i }}">{{ i }}</a></li>
+        {% endfor %}
+
+    </ul>
+</nav>
