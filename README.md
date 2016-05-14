@@ -9,6 +9,8 @@ YAUS was created as a "week-end project", it was made according to the [KISS pri
 
 ## Nice things about YAUS
 
+There's an administration page at the `/admin` address.
+
 YAUS can provide data about the URL you're shortening by just adding `.json` to the address created.
 
 ### Example:
@@ -17,9 +19,9 @@ YAUS can provide data about the URL you're shortening by just adding `.json` to 
 
 ```
 {
-    "original-url"  : "http://example.com",
-    "visits"        : 3,
-    "hash"          : "a9b9f04336ce0181a08e774e01113b31"
+    "url"   : "http://example.com",
+    "visits": 3,
+    "hash"  : "a9b9f04336ce0181a08e774e01113b31"
 } 
 ```
 
@@ -40,6 +42,7 @@ To run YAUS you need:
 * Launch SASS watcher `sass --watch assets/sass/:public/css --style compressed`
 * Go and visit `http://localhost:8080`
 * Change database connection credentials in `src/settings.php`
+* Change admin username and password in `src/middleware.php`
 
 ### Legal stuff
 
