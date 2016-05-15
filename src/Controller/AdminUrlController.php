@@ -85,23 +85,22 @@ class AdminUrlController extends AbstractAdminController
 
         $params = $request->getParams();
 
-        // Just a little bit of safety, can be improved
-        $params['url'] = $this->sanitizer->sanitizeUrl($params['urls']);
-
-        if(empty($params['url'])) {
-            throw new \Exception('Missing or invalid form data');
-        }
-
-        // Adding hash for unique URLs
-        $params['hash'] = md5($params['url']);
-
-        /** @var \YAUS\Resource\UrlResource $urlRes */
-        $urlRes = $this->resources['urls'];
-
         try {
+            // Just a little bit of safety, can be improved
+            $params['url'] = $this->sanitizer->sanitizeUrl($params['url']);
+
+            if(empty($params['url'])) {
+                throw new \Exception('Missing or invalid form data');
+            }
+
+            // Adding hash for unique URLs
+            $params['hash'] = md5($params['url']);
+
+            /** @var \YAUS\Resource\UrlResource $urlRes */
+            $urlRes = $this->resources['urls'];
             $urlRes->add(new Entity\Url(), $params);
         } catch(\Exception $e) {
-            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be added (it\'s probably a duplicate)');
+            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be added. ' . $e->getMessage());
         }
 
         // Set flash message for next request
@@ -128,23 +127,23 @@ class AdminUrlController extends AbstractAdminController
 
         $params = $request->getParams();
 
-        // Just a little bit of safety, can be improved
-        $params['url'] = $this->sanitizer->sanitizeUrl($params['urls']);
-
-        if(empty($params['url']) || empty($params['id'])) {
-            throw new \Exception('Missing or invalid form data');
-        }
-
-        // Adding hash for unique URLs
-        $params['hash'] = md5($params['url']);
-
-        /** @var \YAUS\Resource\UrlResource $urlRes */
-        $urlRes = $this->resources['urls'];
-
         try {
+            // Just a little bit of safety, can be improved
+            $params['url'] = $this->sanitizer->sanitizeUrl($params['url']);
+
+            if(empty($params['url']) || empty($params['id'])) {
+                throw new \Exception('Missing or invalid form data');
+            }
+
+            // Adding hash for unique URLs
+            $params['hash'] = md5($params['url']);
+
+            /** @var \YAUS\Resource\UrlResource $urlRes */
+            $urlRes = $this->resources['urls'];
             $urlRes->edit(new Entity\Url(), $params);
+
         } catch(\Exception $e) {
-            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be changed (the new URL is probably a duplicate)');
+            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be changed. ' . $e->getMessage());
         }
 
         // Set flash message for next request

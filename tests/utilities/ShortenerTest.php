@@ -11,11 +11,11 @@ require 'vendor/autoload.php';
  */
 class ShortenerTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var  \YAUS\Shortener\Shortener() */
+    /** @var  \YAUS\Utilities\Shortener() */
     private $shortener;
 
     public function setUp() {
-        $this->shortener = new \YAUS\Shortener\Shortener();
+        $this->shortener = new \YAUS\Utilities\Shortener();
     }
 
     /**

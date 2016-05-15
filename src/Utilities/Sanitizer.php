@@ -12,11 +12,14 @@ class Sanitizer
 {
     /**
      * Sanitizing URLs
-     * Can be improved, probably
+     * @todo This can be safer!!!
      * @param $url
      * @return mixed
      */
     public function sanitizeUrl($url) {
-        return filter_var($url, FILTER_SANITIZE_URL);
+        $url = str_replace('../', '', $url);
+        $url = str_replace('javascript:', '', $url);
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+        return filter_var($url, FILTER_VALIDATE_URL);
     }
 }
