@@ -22,7 +22,7 @@ YAUS can provide data about the URL you're shortening by just adding `.json` to 
     "url"   : "http://example.com",
     "visits": 3,
     "hash"  : "a9b9f04336ce0181a08e774e01113b31",
-    "slug"  : "ab"
+    "shortUrl"  : "ab"
 } 
 ```
 

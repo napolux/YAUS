@@ -59,9 +59,17 @@ class AdminUrlController extends AbstractAdminController
             throw new \Exception('Missing or invalid form data');
         }
 
+        // Adding hash for unique URLs
+        $params['hash'] = md5($params['url']);
+
         /** @var \YAUS\Resource\UrlResource $urlRes */
         $urlRes = $this->resources['urls'];
-        $urlRes->add(new \YAUS\Entity\Url(), $params);
+
+        try {
+            $urlRes->add(new \YAUS\Entity\Url(), $params);
+        } catch(\Exception $e) {
+            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '"cannot be added (it\'s probably a duplicate)');
+        }
 
         // Set flash message for next request
         $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" added');
@@ -79,11 +87,18 @@ class AdminUrlController extends AbstractAdminController
             throw new \Exception('Missing or invalid form data');
         }
 
+        // Adding hash for unique URLs
+        $params['hash'] = md5($params['url']);
+
         /** @var \YAUS\Resource\UrlResource $urlRes */
         $urlRes = $this->resources['urls'];
 
-        $urlRes->edit(new \YAUS\Entity\Url(), $params);
-
+        try {
+            $urlRes->edit(new \YAUS\Entity\Url(), $params);
+        } catch(\Exception $e) {
+            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '"cannot be changed (the new URL is probably a duplicate)');
+        }
+        
         // Set flash message for next request
         $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" changed');
 

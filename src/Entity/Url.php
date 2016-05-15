@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="urls")
+ * @ORM\Table(name="urls", uniqueConstraints={@ORM\UniqueConstraint(name="url_hash", columns={"hash"})}))
  */
 class Url
 {
@@ -31,6 +31,12 @@ class Url
      * @ORM\Column(type="integer", options={"unsigned"=true})
      */
     protected $visits = 0;
+
+
+    /**
+     * @ORM\Column(type="string", length=32 , nullable=false)
+     */
+    protected $hash;
 
     /**
      * Get array copy of object
@@ -78,6 +84,15 @@ class Url
     }
 
     /**
+     * Get hash
+     * @ORM\return string
+     */
+    public function getHash()
+    {
+        return $this->hash;
+    }
+
+    /**
      * Set id
      * @param string $id
      * @return Url
@@ -118,6 +133,17 @@ class Url
     public function setVisits($visits)
     {
         $this->visits = $visits;
+        return $this;
+    }
+
+    /**
+     * Set hash
+     * @param string $hash
+     * @return Url
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
         return $this;
     }
 }
