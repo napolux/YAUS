@@ -15,7 +15,7 @@ YAUS can provide data about the URL you're shortening by just adding `.json` to 
 
 ### Example:
 
-`http://localhost:8080/u/a` goes to the shortened address while `http://localhost:8080/u/y/json` provides a JSON object with info about the url.
+`http://localhost:8080/u/y` goes to the shortened address while `http://localhost:8080/u/y/json` provides a JSON object with info about the url.
 
 ```
 {

@@ -23,7 +23,8 @@ class RedirectController extends AbstractController
 
     public function url(Request $request, Response $response, $args) {
 
-        $urlObj = $this->getUrlObject($args['shortUrl']);
+        $urlObj = $this->getUrlObject($args['shortUrl'], true);
+
 
         // Redirect
         return $response->withStatus(301)
@@ -38,11 +39,17 @@ class RedirectController extends AbstractController
 
     }
 
-    private function getUrlObject($shortUrl) {
+    private function getUrlObject($shortUrl, $countVisit = false) {
         $urlId = $this->shortener->decode($shortUrl);
 
         /** @var \YAUS\Resource\UrlResource $urlRes */
         $urlRes = $this->resources['urls'];
-        return $urlRes->get($urlId);
+        $obj    = $urlRes->get($urlId);
+
+        if($countVisit) {
+            $obj["visits"]++;
+            $urlRes->edit(new Entity\Url(), $obj);
+        }
+        return $obj;
     }
 }
