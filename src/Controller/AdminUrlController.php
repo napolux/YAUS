@@ -4,10 +4,20 @@ namespace YAUS\Controller;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+use YAUS\Utilities as Utilities;
+use YAUS\Entity as Entity;
 
+/**
+ * Class AdminUrlController
+ * @package YAUS\Controller
+ */
 class AdminUrlController extends AbstractAdminController
 {
+    /** @var  Utilities\Sanitizer() */
+    private $sanitizer;
+
     /**
+     * Listing all the URLs, paginated
      * @param Request $request
      * @param Response $response
      * @param $args
@@ -32,6 +42,14 @@ class AdminUrlController extends AbstractAdminController
         return $response->write($body);
     }
 
+    /**
+     * Nothing to see here, just deleting an URL, given an ID
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return static
+     * @throws \Exception
+     */
     public function deleteUrl(Request $request, Response $response, $args) {
         if(empty($args['id']) || !is_numeric($args['id'])) {
             throw new \Exception('Missing or invalid url id');
@@ -51,9 +69,24 @@ class AdminUrlController extends AbstractAdminController
             ->withHeader('Location', '/admin/urls');
     }
 
+    /**
+     * Adding an URL, with duplicate exception management
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return static
+     * @throws \Exception
+     */
     public function addUrl(Request $request, Response $response, $args) {
 
+        if(!$this->sanitizer) {
+            $this->sanitizer = new Utilities\Sanitizer();
+        }
+
         $params = $request->getParams();
+
+        // Just a little bit of safety, can be improved
+        $params['url'] = $this->sanitizer->sanitizeUrl($params['urls']);
 
         if(empty($params['url'])) {
             throw new \Exception('Missing or invalid form data');
@@ -66,9 +99,9 @@ class AdminUrlController extends AbstractAdminController
         $urlRes = $this->resources['urls'];
 
         try {
-            $urlRes->add(new \YAUS\Entity\Url(), $params);
+            $urlRes->add(new Entity\Url(), $params);
         } catch(\Exception $e) {
-            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '"cannot be added (it\'s probably a duplicate)');
+            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be added (it\'s probably a duplicate)');
         }
 
         // Set flash message for next request
@@ -79,9 +112,24 @@ class AdminUrlController extends AbstractAdminController
             ->withHeader('Location', '/admin/urls');
     }
 
+    /**
+     * This is called when we are changing an URL already saved in the system
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return static
+     * @throws \Exception
+     */
     public function editUrl(Request $request, Response $response, $args) {
 
+        if(!$this->sanitizer) {
+            $this->sanitizer = new Utilities\Sanitizer();
+        }
+
         $params = $request->getParams();
+
+        // Just a little bit of safety, can be improved
+        $params['url'] = $this->sanitizer->sanitizeUrl($params['urls']);
 
         if(empty($params['url']) || empty($params['id'])) {
             throw new \Exception('Missing or invalid form data');
@@ -94,11 +142,11 @@ class AdminUrlController extends AbstractAdminController
         $urlRes = $this->resources['urls'];
 
         try {
-            $urlRes->edit(new \YAUS\Entity\Url(), $params);
+            $urlRes->edit(new Entity\Url(), $params);
         } catch(\Exception $e) {
-            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '"cannot be changed (the new URL is probably a duplicate)');
+            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be changed (the new URL is probably a duplicate)');
         }
-        
+
         // Set flash message for next request
         $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" changed');
 
@@ -106,5 +154,4 @@ class AdminUrlController extends AbstractAdminController
         return $response->withStatus(302)
             ->withHeader('Location', '/admin/urls');
     }
-
 }

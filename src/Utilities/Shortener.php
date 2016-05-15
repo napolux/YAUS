@@ -1,12 +1,12 @@
 <?php
-namespace YAUS\Shortener;
+namespace YAUS\Utilities;
 
 /**
  * Based on an idea from http://stackoverflow.com/a/8015167/208623
  * Fixed to start @ 1, not at 0.
  * The class will take values like 1, 2, 3 and translate them to a, b, c...
  * Class Shortener
- * @package YAUS\Shortener
+ * @package YAUS\Utilities
  */
 class Shortener
 {

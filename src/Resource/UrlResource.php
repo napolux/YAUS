@@ -2,7 +2,7 @@
 
 namespace YAUS\Resource;
 
-use YAUS\Shortener;
+use YAUS\Utilities as Utilities;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
@@ -22,7 +22,7 @@ class UrlResource extends AbstractResource implements ResourceInterface
      */
     public function __construct(EntityManager $entityManager, EntityRepository $repository) {
         parent::__construct($entityManager, $repository);
-        $this->shortener = new \YAUS\Shortener\Shortener();
+        $this->shortener = new Utilities\Shortener();
     }
 
     /**
