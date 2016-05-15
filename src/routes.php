@@ -20,5 +20,5 @@ $app->get('/api/urls/{searchby}', 'YAUS\Api\UrlApiAction:fetchOne')->setName('ya
 $app->get('/api/urls/page/{page}[/{pageSize}]', 'YAUS\Api\UrlApiAction:fetchPaginated')->setName('yaus.api.fetchpaginated');
 
 // Redirection
-$app->get('/u/{shortUrl}', 'YAUS\Controller\RedirectController:hp')->setName('yaus.redirect.url');
-$app->get('/u/{shortUrl}.json', 'YAUS\Controller\RedirectController:hp')->setName('yaus.redirect.json');
+$app->get('/u/{shortUrl}/json', 'YAUS\Controller\RedirectController:urlWithJSON')->setName('yaus.redirect.json');
+$app->get('/u/{shortUrl}', 'YAUS\Controller\RedirectController:url')->setName('yaus.redirect.url');

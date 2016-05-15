@@ -15,15 +15,16 @@ YAUS can provide data about the URL you're shortening by just adding `.json` to 
 
 ### Example:
 
-`http://localhost:8080/u/a` goes to the shortened address while `http://localhost:8080/u/a.json` provides a JSON object with info about the url.
+`http://localhost:8080/u/a` goes to the shortened address while `http://localhost:8080/u/y/json` provides a JSON object with info about the url.
 
 ```
 {
-    "url"   : "http://example.com",
-    "visits": 3,
-    "hash"  : "a9b9f04336ce0181a08e774e01113b31",
-    "shortUrl"  : "ab"
-} 
+    id: 25,
+    url: "http://www.nerdnews.it",
+    shortUrl: "y",
+    visits: 0,
+    hash: "2803e714ae8e0c1acb1dd262e6f356ab"
+}
 ```
 
 A little API is available. Check `src/routes.php`. 

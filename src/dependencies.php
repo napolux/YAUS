@@ -81,3 +81,19 @@ $container['YAUS\Controller\HomepageController'] = function ($c) {
 
     return new YAUS\Controller\HomepageController($view, $resources);
 };
+
+
+// Redirect controller
+$container['YAUS\Controller\RedirectController'] = function ($c) {
+    /** @var \Doctrine\ORM\EntityManager $em */
+    $em   = $c->get('em');
+    $view = $c->get('view');
+    $repo = $em->getRepository('YAUS\Entity\Url');
+
+    $resources = [
+        'urls'  => new \YAUS\Resource\UrlResource($em, $repo),
+        'flash' => $c->get('flash')
+    ];
+
+    return new YAUS\Controller\RedirectController($view, $resources);
+};

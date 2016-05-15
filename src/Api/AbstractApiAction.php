@@ -17,7 +17,7 @@ abstract class AbstractApiAction
     public function fetchAll(Request $request, Response $response, $args)
     {
         $elements = $this->resource->get();
-        $response->withJSON($elements);
+        return $response->withJSON($elements);
     }
 
     public function fetchOne(Request $request, Response $response, $args)
