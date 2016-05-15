@@ -1,4 +1,4 @@
-# YAUS
+# YAUS [![Build Status](https://travis-ci.org/napolux/YAUS.svg?branch=master)](https://travis-ci.org/napolux/YAUS)
 
 This is YAUS, (**Y**et **A**nother **U**rl **S**hortener) based on [SlimFramework](http://www.slimframework.com/) 3.4.0
 and [Doctrine](http://www.doctrine-project.org/).
