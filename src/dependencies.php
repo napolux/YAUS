@@ -66,3 +66,18 @@ $container['YAUS\Controller\AdminUrlController'] = function ($c) {
 
     return new YAUS\Controller\AdminUrlController($view, $resources);
 };
+
+// Homepage controller
+$container['YAUS\Controller\HomepageController'] = function ($c) {
+    /** @var \Doctrine\ORM\EntityManager $em */
+    $em   = $c->get('em');
+    $view = $c->get('view');
+    $repo = $em->getRepository('YAUS\Entity\Url');
+
+    $resources = [
+        'urls'  => new \YAUS\Resource\UrlResource($em, $repo),
+        'flash' => $c->get('flash')
+    ];
+
+    return new YAUS\Controller\HomepageController($view, $resources);
+};

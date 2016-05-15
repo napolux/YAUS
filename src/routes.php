@@ -1,15 +1,8 @@
 <?php
 
-$app->get('/', function ($request, $response, $args) {
-    return $this->view->render($response, 'website/pages/homepage.twig', []);
-})->setName('yaus.website.hp');
-
-$app->get('/privacy', function ($request, $response, $args) {
-
-    return $this->view->render($response, 'website/pages/privacy.twig', []);
-
-})->setName('yaus.website.privacy');
-
+// Frontend
+$app->get('/', 'YAUS\Controller\HomepageController:hp')->setName('yaus.website.hp');
+$app->post('/urls/add', 'YAUS\Controller\HomepageController:addUrl')->setName('yaus.homepage.urls.add');
 
 // Admin
 $app->get('/admin', function ($request, $response, $args) {
@@ -25,3 +18,7 @@ $app->get('/admin/urls/delete/{id}', 'YAUS\Controller\AdminUrlController:deleteU
 $app->get('/api/urls', 'YAUS\Api\UrlApiAction:fetchAll')->setName('yaus.api.fetchall');
 $app->get('/api/urls/{searchby}', 'YAUS\Api\UrlApiAction:fetchOne')->setName('yaus.api.fetchone');
 $app->get('/api/urls/page/{page}[/{pageSize}]', 'YAUS\Api\UrlApiAction:fetchPaginated')->setName('yaus.api.fetchpaginated');
+
+// Redirection
+$app->get('/u/{shortUrl}', 'YAUS\Controller\RedirectController:hp')->setName('yaus.redirect.url');
+$app->get('/u/{shortUrl}.json', 'YAUS\Controller\RedirectController:hp')->setName('yaus.redirect.json');

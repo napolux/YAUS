@@ -1,4 +1,28 @@
+{# The homepage for the website, where users can create short urls #}
 {# website.hp #}
 
 {% include 'website/common/header.twig' %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 main">
+            <h1>Create a new short url with YAUS</h1>
+            <form class="form-horizontal" method="post" action="/urls/add">
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <input class="form-control" id="url" name="url" placeholder="URL address" required="required" type="url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                        <button type="reset" class="btn btn-reset"><i class="fa fa-trash"></i> Reset</button>
+                    </div>
+                </div>
+            </form>
+            {% include 'website/common/message.twig' %}
+        </div>
+    </div>
+</div>
+
 {% include 'website/common/footer.twig' %}

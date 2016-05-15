@@ -30,31 +30,37 @@ class UrlResource extends AbstractResource implements ResourceInterface
      * it can be probably be improved, let's see if I come up with a better idea
      * @param $entity
      * @param $params
+     * @return mixed
      */
     public function add($entity, $params) {
         parent::add($entity, $params);
-        $this->setSlug($entity);
+        $this->setShortUrl($entity);
+        return $entity;
     }
 
     /**
      * Modifing an url doesn't change is slug. Is it a good behaviour?
      * @param $entity
      * @param $params
+     * @return mixed
      */
     public function edit($entity, $params) {
         parent::edit($entity, $params);
-        $this->setSlug($entity);
+        $this->setShortUrl($entity);
+        return $entity;
     }
 
     /**
      * The entity ID will be used to define the "slug" for the shortened url
      * The entity is then saved with the slug
      * @param $entity
+     * @return mixed
      */
-    private function setSlug($entity) {
+    private function setShortUrl($entity) {
         $id = $entity->getId();
         $entity->setShortUrl($this->shortener->encode($id));
         $this->entityManager->merge($entity);
         $this->entityManager->flush();
+        return $entity;
     }
 }
