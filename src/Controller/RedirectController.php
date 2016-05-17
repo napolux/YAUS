@@ -46,6 +46,8 @@ class RedirectController extends AbstractController
         $urlRes = $this->resources['urls'];
         $obj    = $urlRes->get($urlId);
 
+        // Here we are counting visits, but not when JSON is requested
+        // You can always change this behaviour, if you want
         if($countVisit) {
             $obj["visits"]++;
             $urlRes->edit(new Entity\Url(), $obj);
