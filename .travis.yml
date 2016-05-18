@@ -39,7 +39,10 @@ before_script:
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
-script: phpunit tests/
+script: phpunit --coverage-clover build/logs/clover.xml tests/
+
+after_script:
+ - CODECLIMATE_REPO_TOKEN=26aec53055ac1194f893f75192b4c610c8a5524d15cfdb61e5d4d6fc7985a18d ./vendor/bin/test-reporter
 
 # configure notifications (email, IRC, campfire etc)
 # notifications:
