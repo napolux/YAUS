@@ -16,13 +16,14 @@ class UrlCrudTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    public function insertUrlTest($url) {
-
-    }
-
     /**
      * @dataProvider urlsProvider
      */
+    public function testInsertUrl($url) {
+        $this->assertTrue(true);
+    }
+
+
 
     public function urlsProvider() {
         return [

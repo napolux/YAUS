@@ -13,7 +13,8 @@
     ],
     "require-dev": {
       "phake/phake": "2.*",
-      "guzzlehttp/guzzle": "~6.0"
+      "guzzlehttp/guzzle": "~6.0",
+      "codeclimate/php-test-reporter": "dev-master"
     },
     "require": {
         "php": ">=5.5.0",
