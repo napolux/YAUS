@@ -43,6 +43,14 @@ $container['em'] = function ($c) {
     return \Doctrine\ORM\EntityManager::create($settings['doctrine']['connection'], $config);
 };
 
+// Customized Resources
+$container['resources'] = function ($c) {
+    return [
+        'urls'  => new \YAUS\Resource\UrlResource($c->get('em'), $c->get('em')->getRepository('YAUS\Entity\Url')),
+        'flash' => $c->get('flash')
+    ];
+};
+
 // URLS API...
 $container['YAUS\Api\UrlApiAction'] = function ($c) {
     /** @var \Doctrine\ORM\EntityManager $em */
@@ -54,46 +62,23 @@ $container['YAUS\Api\UrlApiAction'] = function ($c) {
 
 // AdminController for URLs
 $container['YAUS\Controller\AdminUrlController'] = function ($c) {
-    /** @var \Doctrine\ORM\EntityManager $em */
-    $em   = $c->get('em');
-    $view = $c->get('view');
-    $repo = $em->getRepository('YAUS\Entity\Url');
-
-    $resources = [
-        'urls'  => new \YAUS\Resource\UrlResource($em, $repo),
-        'flash' => $c->get('flash')
-    ];
-
-    return new YAUS\Controller\AdminUrlController($view, $resources);
+    return new YAUS\Controller\AdminUrlController($view, $c->get('resources'));
 };
 
 // Homepage controller
 $container['YAUS\Controller\HomepageController'] = function ($c) {
-    /** @var \Doctrine\ORM\EntityManager $em */
-    $em   = $c->get('em');
-    $view = $c->get('view');
-    $repo = $em->getRepository('YAUS\Entity\Url');
-
-    $resources = [
-        'urls'  => new \YAUS\Resource\UrlResource($em, $repo),
-        'flash' => $c->get('flash')
-    ];
-
-    return new YAUS\Controller\HomepageController($view, $resources);
+    return new YAUS\Controller\HomepageController($c->get('view'), $c->get('resources'));
 };
 
 
 // Redirect controller
 $container['YAUS\Controller\RedirectController'] = function ($c) {
-    /** @var \Doctrine\ORM\EntityManager $em */
-    $em   = $c->get('em');
-    $view = $c->get('view');
-    $repo = $em->getRepository('YAUS\Entity\Url');
-
     $resources = [
-        'urls'  => new \YAUS\Resource\UrlResource($em, $repo),
+        'urls'  => new \YAUS\Resource\UrlResource($c->get('em'), $c->get('em')->getRepository('YAUS\Entity\Url')),
         'flash' => $c->get('flash')
     ];
 
-    return new YAUS\Controller\RedirectController($view, $resources);
+    return new YAUS\Controller\RedirectController($c->get('view'), $c->get('resources'));
 };
+
+
