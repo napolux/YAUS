@@ -34,7 +34,7 @@ before_script:
   - php doctrine orm:schema-tool:drop --force
   - php doctrine orm:schema-tool:create
 # fixtures
-  - mysql -u root yausdb < ./tests/fixtures/fixtures.sql
+  - mysql -u root yausdb < tests/fixtures/fixtures.sql
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
