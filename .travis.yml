@@ -25,7 +25,6 @@ matrix:
 
 # execute any number of scripts before the test run, custom env's are available as variables
 before_script:
-  - cd project
   - mysql -u root -e "create database IF NOT EXISTS yausdb;"
   - mysql -u root -e "CREATE USER 'yaus'@'localhost' IDENTIFIED BY 'password';"
   - mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'yaus'@'localhost';"
