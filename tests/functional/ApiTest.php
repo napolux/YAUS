@@ -15,6 +15,9 @@ class ApiTest extends \PHPUnit_Framework_TestCase
 {
     protected $client;
 
+    /**
+     * Setup of client for API
+     */
     protected function setUp()
     {
         $this->client = new GuzzleHttp\Client([
@@ -22,12 +25,18 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * Get URLs
+     */
     public function testGetUrls()
     {
         $data = $this->makeRequestCheckStatusAndReturnData('/api/urls');
         $this->assertEquals(5, count($data), 'Size of URL array is not what expected');
     }
 
+    /**
+     * Getting one URL: checking data against fixtures
+     */
     public function testGetSpecificUrl()
     {
         $data = $this->makeRequestCheckStatusAndReturnData('/api/urls/1');
@@ -38,6 +47,9 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($data['hash'], '8ffdefbdec956b595d257f0aaeefd623', 'Wrong hash returned');
     }
 
+    /**
+     * Pagination check. Pages for API should work as expected
+     */
     public function testPagination()
     {
         // First page
@@ -61,6 +73,11 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, count($data), 'The page should contain 5 items');
     }
 
+    /**
+     * Making request, checking status and returning data as array
+     * @param $path
+     * @return array
+     */
     private function makeRequestCheckStatusAndReturnData($path)
     {
         $response = $this->client->get($path);
