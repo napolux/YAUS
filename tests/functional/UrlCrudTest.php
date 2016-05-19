@@ -7,7 +7,7 @@ require 'vendor/autoload.php';
 /**
  * This is the URL CRUD test.
  * We'll add, remove and edit links.
- * Class ShortenerTest
+ * Class UrlCrudTest
  * @package YAUS\Tests
  */
 class UrlCrudTest extends \PHPUnit_Framework_TestCase
