@@ -36,7 +36,7 @@ before_script:
 # fixtures
   - mysql -u root yausdb < tests/fixtures/fixtures.sql
 # starting local server for functional tests
-  - php -S 0.0.0.0:8080 -t public public/index.php
+  - php -S 0.0.0.0:8080 -t public public/index.php &
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
@@ -44,6 +44,7 @@ script: phpunit --coverage-clover build/logs/clover.xml tests/
 
 after_script:
  - CODECLIMATE_REPO_TOKEN=26aec53055ac1194f893f75192b4c610c8a5524d15cfdb61e5d4d6fc7985a18d ./vendor/bin/test-reporter
+ - killall php
 
 # configure notifications (email, IRC, campfire etc)
 # notifications:
