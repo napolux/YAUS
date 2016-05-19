@@ -1,5 +1,6 @@
 <?php
 namespace YAUS\Tests;
+
 use GuzzleHttp;
 
 require 'vendor/autoload.php';
