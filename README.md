@@ -12,7 +12,9 @@ YAUS was created as a "week-end project", it was made according to the [KISS pri
 
 There's an administration page at the `/admin` address.
 
-YAUS can provide data about the URL you're shortening by just adding `.json` to the address created.
+YAUS counts your shortened urls visits
+
+YAUS can provide data about the URL you're shortening by just adding `/json` to the address created.
 
 ### Example:
 
@@ -28,7 +30,7 @@ YAUS can provide data about the URL you're shortening by just adding `.json` to 
 }
 ```
 
-A little API is available. Check `src/routes.php`. 
+A little (just read, not write) API is available. Check `src/routes.php`. 
 
 ## Requirements
 
