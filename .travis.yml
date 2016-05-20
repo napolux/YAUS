@@ -43,7 +43,7 @@ before_script:
 script: phpunit --coverage-clover build/logs/clover.xml tests/
 
 after_script:
- - CODECLIMATE_REPO_TOKEN=26aec53055ac1194f893f75192b4c610c8a5524d15cfdb61e5d4d6fc7985a18d ./vendor/bin/test-reporter
+ - CODECLIMATE_REPO_TOKEN=$CC_TOKEN ./vendor/bin/test-reporter
 # Killing php server
  - killall php
 
