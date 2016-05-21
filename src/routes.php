@@ -5,10 +5,7 @@ $app->get('/', 'YAUS\Controller\HomepageController:hp')->setName('yaus.website.h
 $app->post('/urls/add', 'YAUS\Controller\HomepageController:addUrl')->setName('yaus.homepage.urls.add');
 
 // Admin
-$app->get('/admin', function ($request, $response, $args) {
-    return $this->view->render($response, 'admin/pages/homepage.twig', []);
-})->setName('yaus.admin.hp');
-
+$app->get('/admin', 'YAUS\Controller\AdminHpController:homepage')->setName('yaus.admin.hp');
 $app->post('/admin/urls/add', 'YAUS\Controller\AdminUrlController:addUrl')->setName('yaus.admin.urls.add');
 $app->post('/admin/urls/edit', 'YAUS\Controller\AdminUrlController:editUrl')->setName('yaus.admin.urls.edit');
 $app->get('/admin/urls[/{page}]', 'YAUS\Controller\AdminUrlController:listUrls')->setName('yaus.admin.urls');

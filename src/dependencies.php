@@ -65,11 +65,16 @@ $container['YAUS\Controller\AdminUrlController'] = function ($c) {
     return new YAUS\Controller\AdminUrlController($c->get('view'), $c->get('resources'));
 };
 
+
+// AdminController for URLs
+$container['YAUS\Controller\AdminHpController'] = function ($c) {
+    return new YAUS\Controller\AdminHpController($c->get('view'), $c->get('resources'));
+};
+
 // Homepage controller
 $container['YAUS\Controller\HomepageController'] = function ($c) {
     return new YAUS\Controller\HomepageController($c->get('view'), $c->get('resources'));
 };
-
 
 // Redirect controller
 $container['YAUS\Controller\RedirectController'] = function ($c) {
