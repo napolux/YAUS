@@ -62,7 +62,7 @@ $container['YAUS\Api\UrlApiAction'] = function ($c) {
 
 // AdminController for URLs
 $container['YAUS\Controller\AdminUrlController'] = function ($c) {
-    return new YAUS\Controller\AdminUrlController($view, $c->get('resources'));
+    return new YAUS\Controller\AdminUrlController($c->get('view'), $c->get('resources'));
 };
 
 // Homepage controller
