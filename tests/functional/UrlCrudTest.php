@@ -12,20 +12,23 @@ require 'vendor/autoload.php';
  */
 class UrlCrudTest extends \PHPUnit_Framework_TestCase
 {
-    public function setUp() {
+    public function setUp()
+    {
 
     }
 
     /**
      * @dataProvider urlsProvider
      */
-    public function testInsertUrl($url) {
+    public function testInsertUrl($url)
+    {
         $this->assertTrue(true);
     }
 
 
 
-    public function urlsProvider() {
+    public function urlsProvider()
+    {
         return [
             ["https://www.test1.com"],
             ["https://www.test2.com"],

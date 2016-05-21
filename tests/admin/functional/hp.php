@@ -9,7 +9,8 @@ class AdminHpTest extends PHPUnit_Framework_TestCase
 {
     private $client;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->client = new GuzzleHttp\Client();
     }
 

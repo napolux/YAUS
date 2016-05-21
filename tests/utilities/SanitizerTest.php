@@ -14,7 +14,8 @@ class SanitizerTest extends \PHPUnit_Framework_TestCase
     /** @var  \YAUS\Utilities\Sanitizer() */
     private $sanitizer;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->sanitizer = new \YAUS\Utilities\Sanitizer();
     }
 
@@ -32,7 +33,8 @@ class SanitizerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->sanitizer->sanitizeUrl($url), $correctValues[$url], "Failing sanitizing {$url}");
     }
 
-     public function urlsProvider() {
+     public function urlsProvider()
+     {
         return [
             ["http://www.napolux.com/../../../../../../../../etc/passwd"],
             ["http://www.napolux.com/javascript:alert('hello')"],

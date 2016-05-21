@@ -73,7 +73,8 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, count($data), 'The page should contain 5 items');
     }
 
-    public function testJsonForUrl() {
+    public function testJsonForUrl()
+    {
         $data = $this->makeRequestCheckStatusAndReturnData('/u/a/json');
         $this->assertEquals($data['id'], 1, 'Wrong ID returned');
         $this->assertEquals($data['url'], 'https://www.google.com', 'Wrong URL returned');
