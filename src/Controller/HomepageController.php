@@ -54,12 +54,13 @@ class HomepageController extends AbstractController
             /** @var \YAUS\Resource\UrlResource $urlRes */
             $urlRes = $this->resources['urls'];
             $entity = $urlRes->add(new Entity\Url(), $params);
-        } catch (\Exception $e) {
-            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be added. ' . $e->getMessage());
-        }
 
-        // Set flash message for url
-        $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" added with short url: ' . $this->getHostWithShortRoute() . $entity->getShortUrl());
+            // Set flash message for url
+            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" added with short url: ' . $this->getHostWithShortRoute() . $entity->getShortUrl());
+
+        } catch (\Exception $e) {
+            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be added, it\'s probably already in the system.');
+        }
 
         // Redirect
         return $response->withStatus(302)
