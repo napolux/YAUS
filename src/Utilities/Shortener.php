@@ -13,7 +13,8 @@ class Shortener
     // Dictionary can be whatever you want. Just keep in mind you need to be compliant with URL structure
     private $dictionary = "abcdefghijklmnopqrstuvwxyz0123456789";
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->dictionary = str_split($this->dictionary);
     }
 
@@ -22,7 +23,8 @@ class Shortener
      * @param $i That's the id of our database record!
      * @return string
      */
-    public function encode($i) {
+    public function encode($i)
+    {
         if ($i == 1) {
             return $this->dictionary[0];
         }
@@ -45,12 +47,13 @@ class Shortener
      * @param $input
      * @return int
      */
-    public function decode($input) {
+    public function decode($input)
+    {
         $i = 0;
         $base = count($this->dictionary);
         $input = str_split($input);
 
-        foreach($input as $char) {
+        foreach ($input as $char) {
             $pos = array_search($char, $this->dictionary);
             $i = ($i * $base + $pos) + 1;
         }

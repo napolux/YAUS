@@ -20,7 +20,8 @@ class UrlResource extends AbstractResource implements ResourceInterface
      * @param EntityManager $entityManager
      * @param EntityRepository $repository
      */
-    public function __construct(EntityManager $entityManager, EntityRepository $repository) {
+    public function __construct(EntityManager $entityManager, EntityRepository $repository)
+    {
         parent::__construct($entityManager, $repository);
         $this->shortener = new Utilities\Shortener();
     }
@@ -32,7 +33,8 @@ class UrlResource extends AbstractResource implements ResourceInterface
      * @param $params
      * @return mixed
      */
-    public function add($entity, $params) {
+    public function add($entity, $params)
+    {
         parent::add($entity, $params);
         $this->setShortUrl($entity);
         return $entity;
@@ -44,7 +46,8 @@ class UrlResource extends AbstractResource implements ResourceInterface
      * @param $params
      * @return mixed
      */
-    public function edit($entity, $params) {
+    public function edit($entity, $params)
+    {
         parent::edit($entity, $params);
         $this->setShortUrl($entity);
         return $entity;
@@ -56,7 +59,8 @@ class UrlResource extends AbstractResource implements ResourceInterface
      * @param $entity
      * @return mixed
      */
-    private function setShortUrl($entity) {
+    private function setShortUrl($entity)
+    {
         $id = $entity->getId();
         $entity->setShortUrl($this->shortener->encode($id));
         $this->entityManager->merge($entity);

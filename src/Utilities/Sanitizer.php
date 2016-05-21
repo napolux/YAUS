@@ -16,7 +16,8 @@ class Sanitizer
      * @param $url
      * @return mixed
      */
-    public function sanitizeUrl($url) {
+    public function sanitizeUrl($url)
+    {
         $url = str_replace('../', '', $url);
         $url = str_replace('javascript:', '', $url);
         $url = filter_var($url, FILTER_SANITIZE_URL);

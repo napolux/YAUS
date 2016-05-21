@@ -81,4 +81,3 @@ $container['YAUS\Controller\RedirectController'] = function ($c) {
     return new YAUS\Controller\RedirectController($c->get('view'), $c->get('resources'));
 };
 
-

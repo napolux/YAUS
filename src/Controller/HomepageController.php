@@ -16,7 +16,8 @@ class HomepageController extends AbstractController
     /** @var  Utilities\Sanitizer() */
     private $sanitizer;
 
-    public function hp(Request $request, Response $response, $args) {
+    public function hp(Request $request, Response $response, $args)
+    {
         $body = $this->view->fetch('website/pages/homepage.twig', [
             'message'     => $this->resources['flash']->getMessage('result')
         ]);
@@ -31,9 +32,9 @@ class HomepageController extends AbstractController
      * @return static
      * @throws \Exception
      */
-    public function addUrl(Request $request, Response $response, $args) {
-
-        if(!$this->sanitizer) {
+    public function addUrl(Request $request, Response $response, $args)
+    {
+        if (!$this->sanitizer) {
             $this->sanitizer = new Utilities\Sanitizer();
         }
 
@@ -43,7 +44,7 @@ class HomepageController extends AbstractController
             // Just a little bit of safety, can be improved
             $params['url'] = $this->sanitizer->sanitizeUrl($params['url']);
 
-            if(empty($params['url'])) {
+            if (empty($params['url'])) {
                 throw new \Exception('Missing or invalid form data');
             }
 
@@ -53,7 +54,7 @@ class HomepageController extends AbstractController
             /** @var \YAUS\Resource\UrlResource $urlRes */
             $urlRes = $this->resources['urls'];
             $entity = $urlRes->add(new Entity\Url(), $params);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be added. ' . $e->getMessage());
         }
 
@@ -65,8 +66,9 @@ class HomepageController extends AbstractController
             ->withHeader('Location', '/');
     }
 
-    private function getHostWithShortRoute() {
-        if(isset($_SERVER['HTTPS'])){
+    private function getHostWithShortRoute()
+    {
+        if (isset($_SERVER['HTTPS'])){
             $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
         } else {
             $protocol = 'http';
@@ -75,3 +77,4 @@ class HomepageController extends AbstractController
     }
 
 }
+

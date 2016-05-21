@@ -57,7 +57,8 @@ abstract class AbstractResource implements ResourceInterface
      * @return array
      * @throws \Exception
      */
-    public function getPage($page = 1, $pageSize = self::DEFAULT_PAGE_SIZE) {
+    public function getPage($page = 1, $pageSize = self::DEFAULT_PAGE_SIZE)
+    {
 
         if ((int)$page < 1 || !is_numeric($page)) {
             throw new \Exception('Wrong page number');
@@ -84,7 +85,8 @@ abstract class AbstractResource implements ResourceInterface
      * @param int $pageSize
      * @return float
      */
-    public function getTotalPages($pageSize = self::DEFAULT_PAGE_SIZE) {
+    public function getTotalPages($pageSize = self::DEFAULT_PAGE_SIZE)
+    {
         return ceil(count($this->get()) / $pageSize);
     }
 
@@ -92,7 +94,8 @@ abstract class AbstractResource implements ResourceInterface
      * @param $id
      * @throws \Exception
      */
-    public function delete($id) {
+    public function delete($id)
+    {
 
         $element = $this->repository->find($id);
 
@@ -108,7 +111,8 @@ abstract class AbstractResource implements ResourceInterface
      * @param $entity
      * @param $params
      */
-    public function add($entity, $params) {
+    public function add($entity, $params)
+    {
 
         foreach ($params as $k => $v) {
             $entity->{"set" . ucfirst($k)}($v);
@@ -122,7 +126,8 @@ abstract class AbstractResource implements ResourceInterface
      * @param $entity
      * @param $params
      */
-    public function edit($entity, $params) {
+    public function edit($entity, $params)
+    {
 
         foreach ($params as $k => $v) {
             $entity->{"set" . ucfirst($k)}($v);
@@ -135,7 +140,8 @@ abstract class AbstractResource implements ResourceInterface
     /**
      * @return string
      */
-    public function getSearchField() {
+    public function getSearchField()
+    {
         return 'id';
     }
 }

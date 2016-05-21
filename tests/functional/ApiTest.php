@@ -73,6 +73,15 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, count($data), 'The page should contain 5 items');
     }
 
+    public function testJsonForUrl() {
+        $data = $this->makeRequestCheckStatusAndReturnData('/u/a/json');
+        $this->assertEquals($data['id'], 1, 'Wrong ID returned');
+        $this->assertEquals($data['url'], 'https://www.google.com', 'Wrong URL returned');
+        $this->assertEquals($data['shortUrl'], 'a', 'Wrong shortUrl returned');
+        $this->assertEquals($data['visits'], 0, 'Wrong ID returned');
+        $this->assertEquals($data['hash'], '8ffdefbdec956b595d257f0aaeefd623', 'Wrong hash returned');
+    }
+
     /**
      * Making request, checking status and returning data as array
      * @param $path
@@ -81,6 +90,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     private function makeRequestCheckStatusAndReturnData($path)
     {
         $response = $this->client->get($path);
+        $this->assertContains('application/json', $response->getHeader('content-type')[0], 'Not a JSON response');
         $this->assertEquals(200, $response->getStatusCode());
         return json_decode($response->getBody(), true);
     }

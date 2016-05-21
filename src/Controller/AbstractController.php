@@ -8,7 +8,8 @@ abstract class AbstractController
     protected $view;
     protected $resources;
 
-    public function __construct(TwigViews $view = null, $resources) {
+    public function __construct(TwigViews $view, $resources)
+    {
         $this->view      = $view;
         $this->resources = $resources;
     }

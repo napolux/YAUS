@@ -1,4 +1,6 @@
 <?php
+namespace YAUS\Tests\Admin;
+
 require __DIR__ . '/../../../vendor/autoload.php';
 
 use GuzzleHttp;

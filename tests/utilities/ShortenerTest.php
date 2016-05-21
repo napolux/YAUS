@@ -3,7 +3,6 @@ namespace YAUS\Tests;
 
 require 'vendor/autoload.php';
 
-
 /**
  * This is the first stub for the URL shortener class test.
  * Class ShortenerTest

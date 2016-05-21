@@ -24,7 +24,8 @@ class AdminUrlController extends AbstractAdminController
      * @return Response
      * @throws \Exception
      */
-    public function listUrls(Request $request, Response $response, $args) {
+    public function listUrls(Request $request, Response $response, $args)
+    {
         /** @var \YAUS\Resource\UrlResource $urlRes */
         $urlRes = $this->resources['urls'];
 
@@ -50,8 +51,9 @@ class AdminUrlController extends AbstractAdminController
      * @return static
      * @throws \Exception
      */
-    public function deleteUrl(Request $request, Response $response, $args) {
-        if(empty($args['id']) || !is_numeric($args['id'])) {
+    public function deleteUrl(Request $request, Response $response, $args)
+    {
+        if (empty($args['id']) || !is_numeric($args['id'])) {
             throw new \Exception('Missing or invalid url id');
         }
 
@@ -77,9 +79,10 @@ class AdminUrlController extends AbstractAdminController
      * @return static
      * @throws \Exception
      */
-    public function addUrl(Request $request, Response $response, $args) {
+    public function addUrl(Request $request, Response $response, $args)
+    {
 
-        if(!$this->sanitizer) {
+        if (!$this->sanitizer) {
             $this->sanitizer = new Utilities\Sanitizer();
         }
 
@@ -89,7 +92,7 @@ class AdminUrlController extends AbstractAdminController
             // Just a little bit of safety, can be improved
             $params['url'] = $this->sanitizer->sanitizeUrl($params['url']);
 
-            if(empty($params['url'])) {
+            if (empty($params['url'])) {
                 throw new \Exception('Missing or invalid form data');
             }
 
@@ -99,7 +102,7 @@ class AdminUrlController extends AbstractAdminController
             /** @var \YAUS\Resource\UrlResource $urlRes */
             $urlRes = $this->resources['urls'];
             $urlRes->add(new Entity\Url(), $params);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be added. ' . $e->getMessage());
         }
 
@@ -119,9 +122,10 @@ class AdminUrlController extends AbstractAdminController
      * @return static
      * @throws \Exception
      */
-    public function editUrl(Request $request, Response $response, $args) {
+    public function editUrl(Request $request, Response $response, $args)
+    {
 
-        if(!$this->sanitizer) {
+        if (!$this->sanitizer) {
             $this->sanitizer = new Utilities\Sanitizer();
         }
 
@@ -131,7 +135,7 @@ class AdminUrlController extends AbstractAdminController
             // Just a little bit of safety, can be improved
             $params['url'] = $this->sanitizer->sanitizeUrl($params['url']);
 
-            if(empty($params['url']) || empty($params['id'])) {
+            if (empty($params['url']) || empty($params['id'])) {
                 throw new \Exception('Missing or invalid form data');
             }
 
@@ -142,7 +146,7 @@ class AdminUrlController extends AbstractAdminController
             $urlRes = $this->resources['urls'];
             $urlRes->edit(new Entity\Url(), $params);
 
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be changed. ' . $e->getMessage());
         }
 
@@ -154,3 +158,4 @@ class AdminUrlController extends AbstractAdminController
             ->withHeader('Location', '/admin/urls');
     }
 }
+

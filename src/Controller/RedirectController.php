@@ -16,12 +16,14 @@ class RedirectController extends AbstractController
 {
     private $shortener;
 
-    public function __construct(TwigViews $view = null, $resources) {
+    public function __construct(TwigViews $view, $resources)
+    {
         parent::__construct($view, $resources);
         $this->shortener = new Utilities\Shortener();
     }
 
-    public function url(Request $request, Response $response, $args) {
+    public function url(Request $request, Response $response, $args)
+    {
 
         $urlObj = $this->getUrlObject($args['shortUrl'], true);
 
@@ -31,7 +33,8 @@ class RedirectController extends AbstractController
             ->withHeader('Location', $urlObj['url']);
     }
 
-    public function urlWithJSON(Request $request, Response $response, $args) {
+    public function urlWithJSON(Request $request, Response $response, $args)
+    {
         $urlObj = $this->getUrlObject($args['shortUrl']);
 
         // Redirect
@@ -39,7 +42,8 @@ class RedirectController extends AbstractController
 
     }
 
-    private function getUrlObject($shortUrl, $countVisit = false) {
+    private function getUrlObject($shortUrl, $countVisit = false)
+    {
         $urlId = $this->shortener->decode($shortUrl);
 
         /** @var \YAUS\Resource\UrlResource $urlRes */
@@ -48,7 +52,7 @@ class RedirectController extends AbstractController
 
         // Here we are counting visits, but not when JSON is requested
         // You can always change this behaviour, if you want
-        if($countVisit) {
+        if ($countVisit) {
             $obj["visits"]++;
             $urlRes->edit(new Entity\Url(), $obj);
         }

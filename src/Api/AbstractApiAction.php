@@ -29,8 +29,10 @@ abstract class AbstractApiAction
         return $response->withStatus(404, 'No element found for your search criteria.');
     }
 
-    public function fetchPaginated(Request $request, Response $response, $args) {
+    public function fetchPaginated(Request $request, Response $response, $args)
+    {
         $elements = $this->resource->getPage($args['page'], $args['pageSize']);
         return $response->withJSON($elements);
     }
 }
+
