@@ -65,7 +65,6 @@ $container['YAUS\Controller\AdminUrlController'] = function ($c) {
     return new YAUS\Controller\AdminUrlController($c->get('view'), $c->get('resources'));
 };
 
-
 // AdminController for URLs
 $container['YAUS\Controller\AdminHpController'] = function ($c) {
     return new YAUS\Controller\AdminHpController($c->get('view'), $c->get('resources'));

@@ -73,6 +73,9 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, count($data), 'The page should contain 5 items');
     }
 
+    /**
+     * Testing /u/<shorturl>/json for a JSON representation of the URL
+     */
     public function testJsonForUrl()
     {
         $data = $this->makeRequestCheckStatusAndReturnData('/u/a/json');
