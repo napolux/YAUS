@@ -8,6 +8,11 @@ The project is over-commented in order to make easier for people to understand w
 YAUS was created as a "week-end project", it was made according to the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle):
 **keep it in mind when using YAUS in a production environment**.
 
+## TODO
+
+* Improve test coverage
+* Try [Scrutinizer](https://scrutinizer-ci.com/)
+
 ## Nice things about YAUS
 
 There's an administration page at the `/admin` address.
