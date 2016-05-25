@@ -1,6 +1,8 @@
 <?php
 namespace YAUS\Tests;
 
+use GuzzleHttp;
+
 require 'vendor/autoload.php';
 
 
@@ -12,9 +14,21 @@ require 'vendor/autoload.php';
  */
 class UrlCrudTest extends \PHPUnit_Framework_TestCase
 {
+    protected $client;
+
     public function setUp()
     {
+        $this->client = new GuzzleHttp\Client([
+            'base_uri' => 'http://localhost:8080'
+        ]);
+    }
 
+    public function testUrlRedirect() {
+        $response = $this->client->request('GET', '/u/a', [
+            'allow_redirects' => false
+        ]);
+        $this->assertEquals(301, $response->getStatusCode());
+        $this->assertEquals('https://www.google.com', $response->getHeader('location')[0]);
     }
 
     /**

@@ -53,10 +53,7 @@ $container['resources'] = function ($c) {
 
 // URLS API...
 $container['YAUS\Api\UrlApiAction'] = function ($c) {
-    /** @var \Doctrine\ORM\EntityManager $em */
-    $em   = $c->get('em');
-    $repo = $em->getRepository('YAUS\Entity\Url');
-    $urlResource = new \YAUS\Resource\UrlResource($em, $repo);
+    $urlResource = new \YAUS\Resource\UrlResource($c->get('em'), $c->get('em')->getRepository('YAUS\Entity\Url'));
     return new YAUS\Api\UrlApiAction($urlResource);
 };
 
@@ -77,11 +74,6 @@ $container['YAUS\Controller\HomepageController'] = function ($c) {
 
 // Redirect controller
 $container['YAUS\Controller\RedirectController'] = function ($c) {
-    $resources = [
-        'urls'  => new \YAUS\Resource\UrlResource($c->get('em'), $c->get('em')->getRepository('YAUS\Entity\Url')),
-        'flash' => $c->get('flash')
-    ];
-
     return new YAUS\Controller\RedirectController($c->get('view'), $c->get('resources'));
 };
 
