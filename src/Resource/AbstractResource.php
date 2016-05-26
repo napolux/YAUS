@@ -24,9 +24,10 @@ abstract class AbstractResource implements ResourceInterface
 
     /**
      * @param string|null $searchby
+     * @param string|null $field
      * @return array
      */
-    public function get($searchby = null)
+    public function get($searchby = null, $field = null)
     {
         if (empty($searchby)) {
             $elements = $this->repository->findAll();
@@ -36,11 +37,10 @@ abstract class AbstractResource implements ResourceInterface
                 },
                 $elements
             );
-
             return $elements;
         } else {
             $element = $this->repository->findOneBy(
-                [$this->getSearchField() => $searchby]
+                [$this->getSearchField($field) => $searchby]
             );
             if ($element) {
                 return $element->getArrayCopy();
@@ -138,10 +138,11 @@ abstract class AbstractResource implements ResourceInterface
     }
 
     /**
+     * @param string|null $field
      * @return string
      */
-    public function getSearchField()
+    public function getSearchField($field = null)
     {
-        return 'id';
+        return (empty($field)) ? 'id' : (string)$field;
     }
 }

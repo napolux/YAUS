@@ -53,13 +53,24 @@ class HomepageController extends AbstractController
 
             /** @var \YAUS\Resource\UrlResource $urlRes */
             $urlRes = $this->resources['urls'];
-            $entity = $urlRes->add(new Entity\Url(), $params);
+
+            // Check for duplicates
+            $duplicate = $urlRes->get($params['hash'], 'hash');
+
+            if (!$duplicate) {
+                $entity = $urlRes->add(new Entity\Url(), $params);
+            } else {
+                // Keeping object size at minimum, no db storage... Just frontend presentation.
+                $entity = new Entity\Url();
+                $entity->setShortUrl($duplicate['shortUrl']);
+            }
+
 
             // Set flash message for url
             $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" added with short url: ' . $this->getHostWithShortRoute() . $entity->getShortUrl());
 
         } catch (\Exception $e) {
-            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be added, it\'s probably already in the system.');
+            $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" cannot be added.');
         }
 
         // Redirect

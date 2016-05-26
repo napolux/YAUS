@@ -8,7 +8,7 @@ require 'vendor/autoload.php';
 
 /**
  * This is the URL CRUD test.
- * We'll add, remove and edit links.
+ * We'll visit, add, remove and edit links.
  * Class UrlCrudTest
  * @package YAUS\Tests
  */
