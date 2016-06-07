@@ -4,20 +4,19 @@
 This is YAUS, (**Y**et **A**nother **U**rl **S**hortener) based on [SlimFramework](http://www.slimframework.com/) 3.x
 and [Doctrine](http://www.doctrine-project.org/).
 
-The project is over-commented in order to make easier for people to understand what the code is doing.
+**The project is over-commented** in order to make easier for people to understand what the code is doing.
 YAUS was created as a "week-end project", it was made according to the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle):
 **keep it in mind when using YAUS in a production environment**.
 
 ## TODO
 
 * Improve test coverage
-* Try [Scrutinizer](https://scrutinizer-ci.com/)
 
 ## Nice things about YAUS
 
 There's an administration page at the `/admin` address.
 
-YAUS counts your shortened urls visits
+YAUS counts your shortened urls visits and can detect duplicated URLs in order to prompt for already created short urls.
 
 YAUS can provide data about the URL you're shortening by just adding `/json` to the address created.
 
