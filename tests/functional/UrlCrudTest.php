@@ -2,6 +2,7 @@
 namespace YAUS\Tests;
 
 use GuzzleHttp;
+use Symfony\Component\DomCrawler\Crawler;
 
 require 'vendor/autoload.php';
 
@@ -31,24 +32,22 @@ class UrlCrudTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('https://www.google.com', $response->getHeader('location')[0]);
     }
 
-    /**
-     * @dataProvider urlsProvider
-     */
-    public function testInsertUrl($url)
+    public function testInsertUrl()
     {
-        $this->assertTrue(true);
-    }
+        // This url is already in the system, but we should just get a duplicated url.
+        $response = $this->client->request('POST', '/urls/add', [
+            'form_params' => [
+                'url' => 'https://www.google.com',
+            ]
+        ]);
 
+        $this->assertEquals(200, $response->getStatusCode());
 
-
-    public function urlsProvider()
-    {
-        return [
-            ["https://www.test1.com"],
-            ["https://www.test2.com"],
-            ["https://www.test3.com"],
-            ["https://www.test4.com"],
-            ["https://www.test5.com"]
-        ];
+//        var_dump($response->getBody());
+//        // Crawling for correct message
+//        $crawler = new Crawler($response->getBody());
+//
+//        $filter = $crawler->filter('div.alert strong');
+//        $this->assertEquals('Url "https://www.google.com" added with short url: http://localhost:8080/u/a', $filter->getText(),'Error');
     }
 }

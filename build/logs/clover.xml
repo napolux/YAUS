@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1463684461">
-  <project timestamp="1463684461">
+<coverage generated="1465935696">
+  <project timestamp="1465935696">
     <package name="YAUS\Utilities">
       <file name="/Users/napolux/yaus/src/Utilities/Sanitizer.php">
         <class name="Sanitizer" namespace="YAUS\Utilities">
           <metrics methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
         </class>
         <line num="19" type="method" name="sanitizeUrl" crap="1" count="3"/>
-        <line num="20" type="stmt" count="3"/>
         <line num="21" type="stmt" count="3"/>
         <line num="22" type="stmt" count="3"/>
         <line num="23" type="stmt" count="3"/>
-        <metrics loc="24" ncloc="12" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
+        <line num="24" type="stmt" count="3"/>
+        <metrics loc="25" ncloc="13" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
       </file>
       <file name="/Users/napolux/yaus/src/Utilities/Shortener.php">
         <class name="Shortener" namespace="YAUS\Utilities" fullPackage="YAUS" package="YAUS">
           <metrics methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="23" coveredelements="23"/>
         </class>
         <line num="16" type="method" name="__construct" crap="1" count="14"/>
-        <line num="17" type="stmt" count="14"/>
         <line num="18" type="stmt" count="14"/>
-        <line num="25" type="method" name="encode" crap="3" count="7"/>
-        <line num="26" type="stmt" count="7"/>
-        <line num="27" type="stmt" count="1"/>
-        <line num="30" type="stmt" count="6"/>
-        <line num="31" type="stmt" count="6"/>
+        <line num="19" type="stmt" count="14"/>
+        <line num="26" type="method" name="encode" crap="3" count="7"/>
+        <line num="28" type="stmt" count="7"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="6"/>
         <line num="33" type="stmt" count="6"/>
-        <line num="34" type="stmt" count="6"/>
         <line num="35" type="stmt" count="6"/>
         <line num="36" type="stmt" count="6"/>
+        <line num="37" type="stmt" count="6"/>
         <line num="38" type="stmt" count="6"/>
         <line num="40" type="stmt" count="6"/>
-        <line num="48" type="method" name="decode" crap="2" count="7"/>
-        <line num="49" type="stmt" count="7"/>
-        <line num="50" type="stmt" count="7"/>
-        <line num="51" type="stmt" count="7"/>
+        <line num="42" type="stmt" count="6"/>
+        <line num="50" type="method" name="decode" crap="2" count="7"/>
+        <line num="52" type="stmt" count="7"/>
         <line num="53" type="stmt" count="7"/>
         <line num="54" type="stmt" count="7"/>
-        <line num="55" type="stmt" count="7"/>
         <line num="56" type="stmt" count="7"/>
+        <line num="57" type="stmt" count="7"/>
         <line num="58" type="stmt" count="7"/>
-        <metrics loc="59" ncloc="40" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="23" coveredelements="23"/>
+        <line num="59" type="stmt" count="7"/>
+        <line num="61" type="stmt" count="7"/>
+        <metrics loc="62" ncloc="43" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="23" coveredelements="23"/>
       </file>
     </package>
-    <metrics files="2" loc="83" ncloc="52" classes="2" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="28" coveredelements="28"/>
+    <metrics files="2" loc="87" ncloc="56" classes="2" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="28" coveredelements="28"/>
   </project>
 </coverage>
