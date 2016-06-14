@@ -1,7 +1,7 @@
 {
     "name": "YAUS",
     "description": "Yet Another Url Shortener",
-    "keywords": ["yaus"],
+    "keywords": ["yaus", "url shortener"],
     "homepage": "https://github.com/napolux/yaus",
     "license": "MIT",
     "authors": [
@@ -26,7 +26,8 @@
         "tuupola/slim-basic-auth": "^2.0",
         "slim/flash": "dev-master",
         "doctrine/orm": "^2.5",
-        "codeguy/upload": "^1.3"
+        "codeguy/upload": "^1.3",
+        "symfony/dom-crawler": "^3.1"
     },
     "autoload": {
         "psr-4": {
