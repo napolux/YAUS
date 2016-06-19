@@ -2,7 +2,6 @@
 namespace YAUS\Tests;
 
 use GuzzleHttp;
-use Symfony\Component\DomCrawler\Crawler;
 
 require 'vendor/autoload.php';
 
@@ -42,12 +41,5 @@ class UrlCrudTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertEquals(200, $response->getStatusCode());
-
-//        var_dump($response->getBody());
-//        // Crawling for correct message
-//        $crawler = new Crawler($response->getBody());
-//
-//        $filter = $crawler->filter('div.alert strong');
-//        $this->assertEquals('Url "https://www.google.com" added with short url: http://localhost:8080/u/a', $filter->getText(),'Error');
     }
 }
