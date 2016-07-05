@@ -36,7 +36,7 @@ abstract class AbstractApiAction
     }
 
     public function addOne(Request $request, Response $response, $args) {
-        // adding a new URL to be shortened via API
+        // adding one item
     }
 }
 
