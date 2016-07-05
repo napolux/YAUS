@@ -34,5 +34,9 @@ abstract class AbstractApiAction
         $elements = $this->resource->getPage($args['page'], $args['pageSize']);
         return $response->withJSON($elements);
     }
+
+    public function addOne(Request $request, Response $response, $args) {
+        // adding a new URL to be shortened via API
+    }
 }
 
