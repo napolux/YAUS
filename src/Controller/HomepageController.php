@@ -18,8 +18,18 @@ class HomepageController extends AbstractController
 
     public function hp(Request $request, Response $response, $args)
     {
+        // CSRF fields...
+        $nameKey    = $this->resources['csrf']->getTokenNameKey();
+        $valueKey   = $this->resources['csrf']->getTokenValueKey();
+        $name       = $request->getAttribute($nameKey);
+        $value      = $request->getAttribute($valueKey);
+
         $body = $this->view->fetch('website/pages/homepage.twig', [
-            'message'     => $this->resources['flash']->getMessage('result')
+            'message'   => $this->resources['flash']->getMessage('result'),
+            'nameKey'   => $nameKey,
+            'name'      => $name,
+            'valueKey'  => $valueKey,
+            'value'     => $value
         ]);
         return $response->write($body);
     }
@@ -41,6 +51,11 @@ class HomepageController extends AbstractController
         $params = $request->getParams();
 
         try {
+
+            // Unset CSRF check params, they are not needed here...
+            unset($params[$this->resources['csrf']->getTokenNameKey()]);
+            unset($params[$this->resources['csrf']->getTokenValueKey()]);
+
             // Just a little bit of safety, can be improved
             $params['url'] = $this->sanitizer->sanitizeUrl($params['url']);
 
@@ -64,7 +79,6 @@ class HomepageController extends AbstractController
                 $entity = new Entity\Url();
                 $entity->setShortUrl($duplicate['shortUrl']);
             }
-
 
             // Set flash message for url
             $this->resources['flash']->addMessage('result', 'Url "'. $params['url'] . '" added with short url: ' . $this->getHostWithShortRoute() . $entity->getShortUrl());

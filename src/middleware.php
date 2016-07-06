@@ -16,3 +16,7 @@ $app->add(new \Slim\Middleware\HttpBasicAuthentication([
         return $response->write(json_encode($data, JSON_UNESCAPED_SLASHES));
     }
 ]));
+
+
+// Register CSRF check for all POST routes
+$app->add(new \Slim\Csrf\Guard());

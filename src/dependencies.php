@@ -8,6 +8,11 @@ $container['flash'] = function () {
     return new \Slim\Flash\Messages();
 };
 
+// CSRF check
+$container['csrf'] = function ($c) {
+    return new \Slim\Csrf\Guard();
+};
+
 // Monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
@@ -47,7 +52,8 @@ $container['em'] = function ($c) {
 $container['resources'] = function ($c) {
     return [
         'urls'  => new \YAUS\Resource\UrlResource($c->get('em'), $c->get('em')->getRepository('YAUS\Entity\Url')),
-        'flash' => $c->get('flash')
+        'flash' => $c->get('flash'),
+        'csrf'  => $c->get('csrf')
     ];
 };
 

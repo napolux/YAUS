@@ -113,7 +113,6 @@ abstract class AbstractResource implements ResourceInterface
      */
     public function add($entity, $params)
     {
-
         foreach ($params as $k => $v) {
             $entity->{"set" . ucfirst($k)}($v);
         }
