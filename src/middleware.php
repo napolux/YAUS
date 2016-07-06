@@ -4,8 +4,8 @@
 // Authentication...
 // Please change your credentials to something more secure...
 $app->add(new \Slim\Middleware\HttpBasicAuthentication([
-    "path" => ["/admin"],
-    "realm" => "Administration Panel for YAUS",
+    "path" => ["/admin","/api/urls/add"],
+    "realm" => "Protected",
     "users" => [
         "admin" => "password" // CHANGE ME!
     ],
