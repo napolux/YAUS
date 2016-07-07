@@ -11,6 +11,7 @@ YAUS was created as a "week-end project", it was made according to the [KISS pri
 ## TODO
 
 * Improve test coverage
+* Add API POST request to create short URLs
 
 ## Nice things about YAUS
 
