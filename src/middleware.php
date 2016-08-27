@@ -4,11 +4,9 @@
 // Authentication...
 // Please change your credentials to something more secure...
 $app->add(new \Slim\Middleware\HttpBasicAuthentication([
-    "path" => ["/admin","/api/urls/add"],
+    "path" => ["/admin", "/api/urls/add"],
     "realm" => "Protected",
-    "users" => [
-        "admin" => "password" // CHANGE ME!
-    ],
+    "users" => $app->getContainer()->get('settings')['admin_users'],
     "error" => function ($request, $response, $arguments) {
         $data = [];
         $data["status"] = "error";
@@ -16,7 +14,6 @@ $app->add(new \Slim\Middleware\HttpBasicAuthentication([
         return $response->write(json_encode($data, JSON_UNESCAPED_SLASHES));
     }
 ]));
-
 
 // Register CSRF check for all POST routes
 $app->add(new \Slim\Csrf\Guard());
