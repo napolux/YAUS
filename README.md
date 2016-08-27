@@ -50,9 +50,18 @@ To run YAUS you need:
 
 * Launch local PHP Server from YAUS folder `php -S 0.0.0.0:8080 -t public public/index.php`
 * Launch SASS watcher `sass --watch assets/sass/:public/css --style compressed`
+* Create a `.env` file in the root of your project. Take a look at `.env.example`
+* Change database connection credentials in `.env`
+* Change admin username and password in `.env`
+* Launch local PHP Server from YAUS folder `php -S 0.0.0.0:8080 -t public public/index.php`
 * Go and visit `http://localhost:8080`
-* Change database connection credentials in `src/settings.php`
-* Change admin username and password in `src/middleware.php`
+* Enjoy
+
+## How to launch tests locally
+
+* Copy `.env.example` into `.env`
+* Change credentials in `.env` according to your setup
+* Run `phpunit tests/`
 
 ### Legal stuff
 
