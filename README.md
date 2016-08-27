@@ -1,4 +1,4 @@
-# YAUS
+# YAUS - Yet Another Url Shortener
 [![Build Status](https://travis-ci.org/napolux/YAUS.svg?branch=master)](https://travis-ci.org/napolux/YAUS) [![Code Climate](https://codeclimate.com/github/napolux/YAUS/badges/gpa.svg)](https://codeclimate.com/github/napolux/YAUS) [![Test Coverage](https://codeclimate.com/github/napolux/YAUS/badges/coverage.svg)](https://codeclimate.com/github/napolux/YAUS/coverage)
 
 This is YAUS, (**Y**et **A**nother **U**rl **S**hortener) based on [SlimFramework](http://www.slimframework.com/) 3.x
