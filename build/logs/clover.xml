@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1465935696">
-  <project timestamp="1465935696">
+<coverage generated="1468004091">
+  <project timestamp="1468004091">
     <package name="YAUS\Utilities">
       <file name="/Users/napolux/yaus/src/Utilities/Sanitizer.php">
         <class name="Sanitizer" namespace="YAUS\Utilities">
