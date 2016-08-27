@@ -1,4 +1,8 @@
 <?php
+/** @var \Dotenv\Dotenv $dotenv */
+$dotenv = new Dotenv\Dotenv(__DIR__ . "/..", (getenv("TRAVIS") == true) ? ".env.example" : ".env");
+$dotenv->load();
+
 return [
     'settings' => [
         // If you put YAUS in production, change it to false
@@ -28,11 +32,14 @@ return [
             // MySQL connection settings, change this!!!
             'connection' => [
                 'driver'   => 'pdo_mysql',
-                'host'     => '127.0.0.1',
-                'dbname'   => 'yausdb',
-                'user'     => 'yaus',
-                'password' => 'password',
+                'host'     => getenv('DB_HOST'),
+                'dbname'   => getenv('DB_NAME'),
+                'user'     => getenv('DB_USER'),
+                'password' => getenv('DB_PASS')
             ]
-        ]
+        ],
+        'admin_users' => [
+            getenv('ADMIN_USER') => getenv('ADMIN_PASS')
+        ],
     ],
 ];
