@@ -16,12 +16,22 @@ class RedirectController extends AbstractController
 {
     private $shortener;
 
+    /**
+     * @param TwigViews $view
+     * @param $resources
+     */
     public function __construct(TwigViews $view, $resources)
     {
         parent::__construct($view, $resources);
         $this->shortener = new Utilities\Shortener();
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return static
+     */
     public function url(Request $request, Response $response, $args)
     {
 
@@ -33,6 +43,12 @@ class RedirectController extends AbstractController
             ->withHeader('Location', $urlObj['url']);
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return Response
+     */
     public function urlWithJSON(Request $request, Response $response, $args)
     {
         $urlObj = $this->getUrlObject($args['shortUrl']);
@@ -42,6 +58,11 @@ class RedirectController extends AbstractController
 
     }
 
+    /**
+     * @param $shortUrl
+     * @param bool|false $countVisit
+     * @return array
+     */
     private function getUrlObject($shortUrl, $countVisit = false)
     {
         $urlId = $this->shortener->decode($shortUrl);

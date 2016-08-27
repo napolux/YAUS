@@ -8,6 +8,10 @@
 
 namespace YAUS\Utilities;
 
+/**
+ * Class Sanitizer
+ * @package YAUS\Utilities
+ */
 class Sanitizer
 {
     /**

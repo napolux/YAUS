@@ -92,6 +92,9 @@ class HomepageController extends AbstractController
             ->withHeader('Location', '/');
     }
 
+    /**
+     * @return string
+     */
     private function getHostWithShortRoute()
     {
         if (isset($_SERVER['HTTPS'])){

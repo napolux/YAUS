@@ -16,6 +16,10 @@ abstract class AbstractResource implements ResourceInterface
     /** @var EntityRepository  */
     protected $repository       = null;
 
+    /**
+     * @param EntityManager $entityManager
+     * @param EntityRepository $repository
+     */
     public function __construct(EntityManager $entityManager, EntityRepository $repository)
     {
         $this->entityManager = $entityManager;
