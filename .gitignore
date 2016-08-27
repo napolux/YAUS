@@ -2,6 +2,7 @@
 /public/uploads/*
 /logs/*
 !/logs/README.md
+.env
 # Compiled source #
 ###################
 *.com
@@ -50,7 +51,7 @@ ehthumbs.db
 Thumbs.db
 
 # cache #
-######################
+#########
 /cache/
 /.sass-cache/
 *.map
