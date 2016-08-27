@@ -18,6 +18,7 @@
       "symfony/css-selector": "dev-master"
     },
     "require": {
+        "vlucas/phpdotenv" : "^2.3",
         "php": ">=5.5.0",
         "slim/slim": "^3.5",
         "slim/php-view": "^2.0",
